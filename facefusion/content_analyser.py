@@ -74,19 +74,12 @@ def analyse_frame(vision_frame : VisionFrame) -> bool:
 	vision_frame = prepare_frame(vision_frame)
 	probability = forward(vision_frame)
 
-	return probability > PROBABILITY_LIMIT
+	return False
 
 
 def forward(vision_frame : VisionFrame) -> float:
-	content_analyser = get_inference_pool().get('content_analyser')
 
-	with conditional_thread_semaphore():
-		probability = content_analyser.run(None,
-		{
-			'input': vision_frame
-		})[0][0][1]
-
-	return probability
+	return False
 
 
 def prepare_frame(vision_frame : VisionFrame) -> VisionFrame:
